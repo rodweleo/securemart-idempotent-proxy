@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const fetchAllProducts_1 = require("./functions/fetchAllProducts");
+const fetchCategoryProducts_1 = require("./functions/fetchCategoryProducts");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
@@ -27,6 +28,19 @@ app.get("/proxy", (req, res) => {
 app.get("/proxy/products", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield (0, fetchAllProducts_1.fetchAllProducts)();
+        res.send(response);
+    }
+    catch (e) {
+        res.send([]);
+    }
+}));
+app.get("/proxy/products/category/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    if (!id) {
+        res.send([]);
+    }
+    try {
+        const response = yield (0, fetchCategoryProducts_1.fetchCategoryProducts)(id);
         res.send(response);
     }
     catch (e) {
