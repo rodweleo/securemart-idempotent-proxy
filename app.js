@@ -21,7 +21,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "*"
 }));
-app.get("/", (req, res) => {
+app.get("/proxy", (req, res) => {
     res.send("Server is getting requests");
 });
 app.get("/proxy/products", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

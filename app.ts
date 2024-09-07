@@ -11,7 +11,7 @@ app.use(cors({
     origin: "*"
 }))
 
-app.get("/", (req, res) => {
+app.get("/proxy", (req, res) => {
 
     res.send("Server is getting requests");
 })
